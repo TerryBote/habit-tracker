@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#17121d" />
+    <meta
+      name="description"
+      content="黑、紫、绯红配色的每日习惯打卡网页，完成一项就点一下。"
+    />
+    <title>钉住今天</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="page-atmosphere" aria-hidden="true">
+      <span class="atmosphere-sheet atmosphere-sheet-a"></span>
+      <span class="atmosphere-sheet atmosphere-sheet-b"></span>
+      <span class="atmosphere-slash atmosphere-slash-a"></span>
+      <span class="atmosphere-staple atmosphere-staple-a"></span>
+      <span class="atmosphere-staple atmosphere-staple-b"></span>
+    </div>
+
+    <main class="app-shell">
+      <header class="page-header">
+        <div class="header-topline">
+          <p class="eyebrow" id="current-date">今天</p>
+          <p class="palette-code">BLACK / VIOLET / CRIMSON</p>
+        </div>
+        <p class="title-kicker">STAPLE YOUR DAY</p>
+        <h1><span>钉住</span>今天。</h1>
+        <p class="intro">不用热血宣言。完成一项，就点一下。</p>
+      </header>
+
+      <section class="summary-card" aria-labelledby="summary-title">
+        <div class="summary-copy">
+          <p class="summary-label" id="summary-title">
+            <span>01</span>
+            今日完成
+          </p>
+          <p class="summary-count" aria-live="polite">
+            <strong id="completed-count">0</strong>
+            <span aria-hidden="true">/</span>
+            <span id="total-count">0</span>
+            <span class="summary-unit">项</span>
+          </p>
+        </div>
+
+        <div class="summary-progress">
+          <div
+            class="progress-track"
+            id="progress-track"
+            role="progressbar"
+            aria-label="今日习惯完成进度"
+            aria-valuemin="0"
+            aria-valuemax="0"
+            aria-valuenow="0"
+          >
+            <span class="progress-fill" id="progress-fill"></span>
+          </div>
+          <p class="summary-message" id="summary-message">从一件小事开始。</p>
+        </div>
+      </section>
+
+      <section class="habits-section" aria-labelledby="habits-title">
+        <div class="section-heading">
+          <h2 id="habits-title"><span>02</span>今日习惯</h2>
+          <span>点击卡片完成</span>
+        </div>
+
+        <ul class="habit-list" id="habit-list"></ul>
+
+        <div class="empty-state" id="empty-state" hidden>
+          <span class="empty-mark" aria-hidden="true">+</span>
+          <h3>还没有习惯</h3>
+          <p>添加一件想在今天完成的小事。</p>
+        </div>
+
+        <button class="add-habit-button" id="add-habit-button" type="button">
+          <span class="add-icon" aria-hidden="true">＋</span>
+          <span class="add-copy">
+            <strong>添加习惯</strong>
+            <small>钉上一件新的事</small>
+          </span>
+        </button>
+      </section>
+
+      <p class="storage-note">打卡记录仅保存在当前浏览器中。</p>
+      <p class="storage-warning" id="storage-warning" role="status" hidden>
+        当前无法持久保存，关闭页面后今天的记录会丢失。
+      </p>
+    </main>
+
+    <dialog class="habit-dialog" id="habit-dialog" aria-labelledby="dialog-title">
+      <form class="habit-form" id="habit-form" novalidate>
+        <div class="dialog-heading">
+          <p class="eyebrow" id="dialog-eyebrow">新建</p>
+          <h2 id="dialog-title">添加习惯</h2>
+        </div>
+
+        <label for="habit-name">习惯名称</label>
+        <input
+          id="habit-name"
+          name="habit-name"
+          type="text"
+          maxlength="24"
+          autocomplete="off"
+          placeholder="例如：阅读 20 分钟"
+          aria-describedby="habit-name-hint habit-error"
+        />
+        <div class="field-meta">
+          <span id="habit-name-hint">最多 24 个字符</span>
+          <span id="name-length">0/24</span>
+        </div>
+        <p class="form-error" id="habit-error" role="alert" aria-live="polite"></p>
+
+        <div class="dialog-actions">
+          <button class="button button-secondary" id="cancel-dialog" type="button">
+            取消
+          </button>
+          <button class="button button-primary" id="save-habit" type="submit">
+            添加
+          </button>
+        </div>
+      </form>
+    </dialog>
+
+    <noscript>
+      <p class="noscript-message">请启用 JavaScript 后使用习惯打卡。</p>
+    </noscript>
+  </body>
+</html>
